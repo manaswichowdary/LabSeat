@@ -1,5 +1,3 @@
-/* LabSeat shared styles — ASU palette: maroon #8C1D40, gold #FFC627 */
-
 :root {
   --asu-maroon: #8c1d40;
   --asu-gold: #ffc627;
@@ -115,7 +113,6 @@ main {
   font-size: 0.9rem;
 }
 
-/* Use :not([hidden]) for display so author `display: grid` cannot override [hidden] (fixes stuck blur). */
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -285,4 +282,111 @@ main {
   text-align: center;
   color: var(--text-muted);
   font-size: 0.95rem;
+}
+
+
+.crud-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.crud-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 5%);
+}
+
+.crud-card h2 {
+  margin: 0 0 0.35rem;
+  color: var(--asu-maroon);
+  font-size: 1.05rem;
+}
+
+.crud-help {
+  margin: 0 0 0.85rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.crud-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.crud-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.crud-form input,
+.crud-form select {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.crud-form input:focus,
+.crud-form select:focus {
+  outline: 2px solid var(--asu-gold);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--asu-maroon);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--asu-maroon-dark);
+}
+
+.btn-danger {
+  background: #b42318;
+  color: #fff;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #8f1d14;
+}
+
+.danger-card {
+  border-color: #efc3bf;
+}
+
+.form-message {
+  min-height: 1.25rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.form-message.success {
+  color: #147a3d;
+}
+
+.form-message.error {
+  color: #b42318;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .crud-panel {
+    grid-template-columns: 1fr;
+  }
 }
