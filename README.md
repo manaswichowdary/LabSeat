@@ -23,7 +23,7 @@ Students can view live availability reports for study zones across ASU buildings
 | Person | Responsibility |
 |--------|---------------|
 | Manaswi | Frontend: index.html, live availability display |
-| Siri | Frontend: forms, buttons, style.css, app.js |
+| Siri | Frontend CRUD forms, styling, and JavaScript actions |
 | Krutika | Backend: db.php, get_reports.php |
 | Vaishnavi | Backend: add_report.php, update_report.php, delete_report.php |
 
