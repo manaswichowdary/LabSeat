@@ -1,11 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Load config.php from this same folder.
- *
- * @return array{DB_HOST: string, DB_PORT: string, DB_NAME: string, DB_USER: string, DB_PASS: string}
- */
 function labseat_load_config(): array
 {
     $path = __DIR__ . '/config.php';
@@ -15,7 +10,6 @@ function labseat_load_config(): array
         );
     }
 
-    /** @var array<string, string> $cfg */
     $cfg = require $path;
 
     foreach (['DB_HOST', 'DB_PORT', 'DB_NAME', 'DB_USER', 'DB_PASS'] as $key) {
@@ -27,11 +21,6 @@ function labseat_load_config(): array
     return $cfg;
 }
 
-/**
- * Open one shared PostgreSQL connection (PDO).
- *
- * @throws PDOException if PostgreSQL rejects the login or the server is down
- */
 function labseat_pdo(): PDO
 {
     $cfg = labseat_load_config();
