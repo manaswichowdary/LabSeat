@@ -28,12 +28,10 @@ INNER JOIN "User" u ON ar.userid = u.userid
 SQL;
 
 try {
-    // First try to show only current active reports
     $sqlActive = $sqlSelect . "\nWHERE ar.expiresat > NOW()\nORDER BY ar.createdat DESC\n";
     $stmt = $pdo->query($sqlActive);
     $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // If all sample reports expired, show all reports so the app still displays data
     if (count($reports) === 0) {
         $sqlAll = $sqlSelect . "\nORDER BY ar.createdat DESC\n";
         $stmt = $pdo->query($sqlAll);
