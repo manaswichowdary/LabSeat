@@ -15,9 +15,9 @@ Students can view live availability reports for study zones across ASU buildings
 | Database | PostgreSQL (labseat)        |
 
 ## Project Layout
-- `frontend/` — index.html and style.css
-- `backend/` — PHP API scripts (get_reports.php, add_report.php, update_report.php, delete_report.php)
-- `database/` — SQL schema, seed data, and reference queries
+- `frontend/` - index.html and style.css
+- `backend/` - PHP API scripts (get_reports.php, add_report.php, update_report.php, delete_report.php)
+- `database/` - SQL schema, seed data, and reference queries
 
 ## Team
 | Person | Responsibility |
