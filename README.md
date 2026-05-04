@@ -1,7 +1,7 @@
-# LabSeat — Live Study Space Finder
+# LabSeat - Live Study Space Finder
 
 A web application that helps ASU students find available study spaces on Tempe Campus.
-Built for CSE 412 — Database Management, Phase 03.
+Built for CSE 412 - Database Management, Phase 03.
 
 ## Project Overview
 LabSeat connects a simple HTML/CSS/JS frontend to PHP API scripts backed by PostgreSQL.
