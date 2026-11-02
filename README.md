@@ -6,6 +6,10 @@ Built for CSE 412 (Database Management), Phase 03.
 
 ![LabSeat dashboard](docs/screenshots/frontend_reports.png)
 
+## The Problem
+
+During midterms and finals, ASU students walk from Hayden to Noble to the Engineering Center just to find every seat taken. There is no easy way to know which study zones are free, quiet or have open outlets before you get there. LabSeat lets students share that in a few seconds, so everyone else can check before they walk over.
+
 ## Features
 
 - Live dashboard with totals for reports, high availability zones, quiet zones and flagged reports
@@ -33,6 +37,23 @@ backend/    PHP API: get_reports, add_report, update_report, delete_report
 database/   Schema, seed data and reference queries
 docs/       Screenshots
 ```
+
+## My Role
+
+I built the main frontend (`frontend/index.html` and `style.css`):
+
+- Page layout and the summary cards for total reports, high availability, quiet zones and flagged reports
+- Filters for building, seat availability, noise level and flagged status, with dropdown options built from the live data
+- The reports table, plus loading and error states so the page never just goes blank when the API fails
+
+## Key Decisions
+
+- **Reports expire after 30 minutes.** Seat availability changes fast, so each report gets an `ExpiresAt` time and the API shows only active reports. If nothing is active, it falls back to the latest reports so the page is never empty.
+- **Safe database queries.** Every write uses PDO prepared statements, and IDs are checked with `filter_var` before they reach the database. This blocks SQL injection.
+- **The database enforces the rules.** `CHECK` constraints limit seat, noise and outlet values to a fixed set, so bad data gets rejected even if a request skips the frontend.
+- **Clear errors from the API.** Endpoints return the right status codes (400 for bad input, 404 for a missing report, 405 for the wrong method). Deleting a report that a moderator action still points to returns 409 with a message explaining why.
+- **Filtering happens in the browser.** The page loads reports once and filters them instantly as you change dropdowns, with no extra API calls.
+- **The schema is normalized.** Buildings, floors, zones and amenities have separate tables, so a building name is stored once and new campuses or floors can be added without changing the code.
 
 ## Run It Locally
 
