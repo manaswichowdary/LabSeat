@@ -35,7 +35,7 @@ The browser talks to a small set of PHP endpoints that return JSON. Each endpoin
 
 ```mermaid
 flowchart LR
-    U([Student]) --> FE["Frontend<br/>index.html + style.css<br/>dashboard, filters, forms"]
+    U([Student]) --> FE["Frontend<br/>index.html + style.css + app.js<br/>dashboard, filters, forms"]
     FE -- "fetch JSON" --> API["PHP API (backend/)<br/>get_reports · add_report<br/>update_report · delete_report"]
     API --> DB["db.php<br/>PDO connection"]
     DB --> PG[("PostgreSQL<br/>labseat")]
