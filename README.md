@@ -78,7 +78,7 @@ erDiagram
 ## Project Layout
 
 ```
-frontend/   index.html and style.css (dashboard, filters, CRUD forms)
+frontend/   index.html, style.css and app.js (dashboard, filters, CRUD forms)
 backend/    PHP API: get_reports, add_report, update_report, delete_report
 database/   Schema, seed data and reference queries
 docs/       Screenshots
@@ -86,7 +86,7 @@ docs/       Screenshots
 
 ## My Role
 
-I built the main frontend (`frontend/index.html` and `style.css`):
+I built the main frontend (`frontend/index.html`, `style.css` and the dashboard logic in `app.js`):
 
 - Page layout and the summary cards for total reports, high availability, quiet zones and flagged reports
 - Filters for building, seat availability, noise level and flagged status, with dropdown options built from the live data

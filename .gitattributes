@@ -1,0 +1,2 @@
+# Count the PostgreSQL files in GitHub's language stats
+*.sql linguist-detectable=true linguist-language=PLpgSQL
