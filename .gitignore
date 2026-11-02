@@ -1,0 +1,7 @@
+# Local database settings (copy backend/config.example.php to backend/config.php)
+backend/config.php
+
+# OS and editor files
+.DS_Store
+*.swp
+*.tmp
