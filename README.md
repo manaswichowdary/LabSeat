@@ -29,6 +29,52 @@ During midterms and finals, ASU students walk from Hayden to Noble to the Engine
 | Backend  | PHP (PDO)                   |
 | Database | PostgreSQL                  |
 
+## Architecture
+
+The browser talks to a small set of PHP endpoints that return JSON. Each endpoint opens one shared PDO connection to PostgreSQL.
+
+```mermaid
+flowchart LR
+    U([Student]) --> FE["Frontend<br/>index.html + style.css<br/>dashboard, filters, forms"]
+    FE -- "fetch JSON" --> API["PHP API (backend/)<br/>get_reports · add_report<br/>update_report · delete_report"]
+    API --> DB["db.php<br/>PDO connection"]
+    DB --> PG[("PostgreSQL<br/>labseat")]
+```
+
+**How a page load works**
+
+1. `index.html` calls `get_reports.php`.
+2. The endpoint joins reports with their zone, floor, building and user, and returns only reports that have not expired.
+3. The page fills the summary cards, the filter dropdowns and the table from that one response. Changing a filter just re-filters the data already in the browser.
+4. Creating, updating or deleting a report sends JSON to the matching endpoint, then reloads the list.
+
+### Database
+
+```mermaid
+erDiagram
+    BUILDING ||--o{ FLOOR : has
+    FLOOR ||--o{ ZONE : has
+    ZONE ||--o{ ZONE_AMENITY : offers
+    AMENITY ||--o{ ZONE_AMENITY : "is in"
+    ZONE ||--o{ AVAILABILITY_REPORT : "gets"
+    USER ||--o{ AVAILABILITY_REPORT : posts
+    USER ||--o{ MODERATOR_ACTION : takes
+    AVAILABILITY_REPORT ||--o{ MODERATOR_ACTION : "reviewed by"
+    ZONE ||--o{ PREDICTION_SNAPSHOT : "summarized in"
+
+    AVAILABILITY_REPORT {
+        int ReportID PK
+        int ZoneID FK
+        int UserID FK
+        string SeatAvailability
+        string NoiseLevel
+        string OutletAvailability
+        timestamp CreatedAt
+        timestamp ExpiresAt
+        bool IsFlagged
+    }
+```
+
 ## Project Layout
 
 ```
